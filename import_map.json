@@ -8,8 +8,10 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.2.3",
     "twind": "https://esm.sh/twind@0.16.19",
     "twind/": "https://esm.sh/twind@0.16.19/",
+    "dotenv": "https://deno.land/std@0.183.0/dotenv/mod.ts",
     "@7-docs/edge": "https://esm.sh/@7-docs/edge@0.0.3",
-    "@7-docs/edge/": "https://esm.sh/@7-docs/edge@0.0.3/",
+    "@7-docs/edge/supabase": "https://esm.sh/@7-docs/edge@0.0.3/supabase",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.20.0",
     "preact-markdown": "https://esm.sh/react-markdown@7.1.2?alias=react:preact/compat"
   }
 }

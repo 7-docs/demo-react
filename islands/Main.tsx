@@ -3,15 +3,13 @@ import { getDelta } from '@7-docs/edge';
 import { Output } from '../components/Output.tsx';
 import { embeddingModels, completionModels, namespace, suggestions } from '../config.ts';
 import type { StateUpdater } from 'preact/hooks';
-import type { Metadata } from '@7-docs/edge';
+import type { MetaData } from '@7-docs/edge';
 
 export default function Main() {
   const [inputValue, setInputValue] = useState('');
-  const [embeddingModel, setEmbeddingModel] = useState(embeddingModels[0]);
-  const [completionModel, setCompletionModel] = useState(completionModels[0]);
   const [isLoading, setIsLoading] = useState(false);
   const [outputText, setOutputText] = useState('');
-  const [metadata, setMetadata] = useState<null | Metadata[]>();
+  const [metadata, setMetadata] = useState<null | MetaData[]>();
   const [isSuggestionsVisible, setSuggestionsVisible] = useState(false);
 
   const toggleSuggestions = () => setSuggestionsVisible(!isSuggestionsVisible);
@@ -37,8 +35,8 @@ export default function Main() {
 
     const searchParams = new URLSearchParams();
     searchParams.set('query', encodeURIComponent(inputValue));
-    searchParams.set('embedding_model', embeddingModel);
-    searchParams.set('completion_model', completionModel);
+    searchParams.set('embedding_model', embeddingModels[0]);
+    searchParams.set('completion_model', completionModels[0]);
 
     const url = '/api/completion?' + searchParams.toString();
 
