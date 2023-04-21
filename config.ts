@@ -7,7 +7,7 @@ export const suggestions = [
   'How do I avoid prop-drilling?',
 ];
 export const prompt = `Answer the question using the provided context.
-  Use Markdown and always try to include an example of code in fenced code blocks.
+  Use Markdown and always try to include an example in language-specific fenced code blocks.
   If the answer is not contained within the text below, say "Sorry, I don\'t have that information.".
 
   Context: {CONTEXT}
