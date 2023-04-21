@@ -9,9 +9,6 @@ export default {
   selfURL: import.meta.url,
   content: ['./{components,islands,routes}/**/*.tsx'],
   theme: {
-    maxWidth: {
-      prose: '55ch',
-    },
     extend: {
       colors: {
         'darker-gray': darkerGray,

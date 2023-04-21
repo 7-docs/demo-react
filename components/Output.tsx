@@ -1,8 +1,10 @@
 import PreactMarkdown from 'preact-markdown';
+import { tw } from 'twind/css';
+import { horizontalScrollbar } from '../lib/scrollbar.ts';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import ts from 'react-syntax-highlighter/languages/prism/typescript';
-import tsx from 'react-syntax-highlighter/languages/prism/tsx';
-import { vscDarkPlus } from 'react-syntax-highlighter/styles/prism';
+import ts from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
+import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import type { ComponentChildren } from 'preact';
 
 type Props = {
@@ -34,13 +36,17 @@ const Code = (props: Props) => {
   const language = getLanguage(props);
 
   return (
-    <SyntaxHighlighter style={vscDarkPlus} language={language} PreTag="div">
+    <SyntaxHighlighter
+      style={vscDarkPlus}
+      language={language}
+      PreTag="div"
+      className={`${tw(horizontalScrollbar)} overflow-x-auto`}>
       {props.children}
     </SyntaxHighlighter>
   );
 };
 
-export function Output(props: { text: string; cursor: boolean }) {
+export function Output(props: { text: string }) {
   return (
     <PreactMarkdown
       components={{

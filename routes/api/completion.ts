@@ -3,7 +3,7 @@ import { Handlers } from '$fresh/server.ts';
 import { createClient } from '@supabase/supabase-js';
 import { getCompletionHandler } from '@7-docs/edge';
 import * as supabase from '@7-docs/edge/supabase';
-import { namespace, prompt } from '../../config.ts';
+import { namespace, prompt, system } from '../../config.ts';
 import type { MetaData } from '@7-docs/edge';
 
 type QueryFn = (vector: number[]) => Promise<MetaData[]>;
@@ -19,5 +19,5 @@ const client = createClient(SUPABASE_URL, SUPABASE_API_KEY);
 const query: QueryFn = (vector: number[]) => supabase.query({ client, namespace, vector });
 
 export const handler: Handlers = {
-  GET: getCompletionHandler({ OPENAI_API_KEY, query, prompt }),
+  GET: getCompletionHandler({ OPENAI_API_KEY, query, system, prompt }),
 };
