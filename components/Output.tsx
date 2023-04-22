@@ -1,10 +1,10 @@
 import PreactMarkdown from 'preact-markdown';
 import { tw } from 'twind/css';
-import { horizontalScrollbar } from '../lib/scrollbar.ts';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import ts from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
-import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import ts from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/typescript?alias=react:preact/compat&deps=preact@10.13.1';
+import tsx from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/tsx?alias=react:preact/compat&deps=preact@10.13.1';
+import { vscDarkPlus } from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism?alias=react:preact/compat&deps=preact@10.13.1';
+import { horizontalScrollbar } from '../lib/scrollbar.ts';
 import type { ComponentChildren } from 'preact';
 
 type Props = {
