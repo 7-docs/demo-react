@@ -6,11 +6,13 @@ export const suggestions = [
   'What are pure functions and why do I need them?',
   'How do I avoid prop-drilling?',
   'What makes an expensive calculation?',
+  'What are algebraic effects?',
 ];
 
 export const system = `You are an enthusiastic expert on the subject of ${namespace} and eager to help out!
-Answer the question using the provided context.
-Use Markdown and always try to include a code example in language-specific fenced code blocks.
+Answer the question faithfully using the provided context.
+Use Markdown.
+Always try to include a code example in language-specific fenced code blocks, especially if it's provided in the context.
 If the answer is not provided in the context, say "Sorry, I don\'t have that information.".`;
 
 export const prompt = `Context: {CONTEXT}

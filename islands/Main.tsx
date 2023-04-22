@@ -4,6 +4,7 @@ import { verticalScrollbar } from '../lib/scrollbar.ts';
 import { useConversation } from '../lib/useConversation.ts';
 import { Input } from '../components/Input.tsx';
 import { Output } from '../components/Output.tsx';
+import { Sources } from '../components/Sources.tsx';
 import { InputButton } from '../components/InputButton.tsx';
 import { namespace, suggestions } from '../config.ts';
 import { useStream } from '../lib/useStream.ts';
@@ -15,21 +16,14 @@ export default function Main() {
   const scrollableElement = useRef<HTMLDivElement>(null);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState(false);
 
-  const updateInputValue = (value: string) => !isStreaming && setInputValue(value);
+  const onSubmit = (event?: Event) => {
+    if (event) event.preventDefault();
+    if (inputValue.trim().length > 0) dispatch({ type: 'setInput', value: inputValue });
+  };
 
-  const onSubmit = (event: Event) => event.preventDefault();
-
-  const onChange = (event: Event) => event.target instanceof HTMLInputElement && updateInputValue(event.target.value);
+  const onChange = (event: Event) => event.target instanceof HTMLInputElement && setInputValue(event.target.value);
 
   const toggleSuggestions = () => setSuggestionsVisible(!isSuggestionsVisible);
-
-  useEffect(() => {
-    if (inputValue.trim().length > 0) {
-      dispatch({ type: 'setInput', value: inputValue });
-      setInputValue('');
-      startStream(inputValue, conversation);
-    }
-  }, [inputValue, setInputValue]);
 
   useEffect(() => {
     if (outputStream.length > 0 && !isStreaming) {
@@ -41,7 +35,14 @@ export default function Main() {
     if (scrollableElement.current) {
       scrollableElement.current.scrollTop = scrollableElement.current.scrollHeight;
     }
-  }, [inputValue, outputStream, isSuggestionsVisible]);
+  }, [conversation.input, outputStream, isSuggestionsVisible]);
+
+  useEffect(() => {
+    if (conversation.input.length > 0 && !isStreaming) {
+      startStream(conversation.input, conversation);
+      setInputValue('');
+    }
+  }, [conversation.input]);
 
   return (
     <main class="h-screen">
@@ -56,20 +57,11 @@ export default function Main() {
         <div
           class={`${tw(verticalScrollbar)} flex-grow-1 overflow-y-auto flex flex-col gap-2 pb-2`}
           ref={scrollableElement}>
-          {conversation?.history.map(interaction => (
+          {conversation?.history.map((interaction, index, conversation) => (
             <>
               <Input>{interaction.input}</Input>
               <Output text={interaction.output} />
-              {interaction.metadata && interaction.metadata?.length > 0 ? (
-                <div>
-                  Sources:
-                  {interaction.metadata.map(metadata => (
-                    <a href={metadata.url} class="inline mx-1 hover:underline">
-                      {metadata.title}
-                    </a>
-                  ))}
-                </div>
-              ) : null}
+              {index === conversation.length - 1 ? <Sources metadata={interaction.metadata} /> : null}
             </>
           ))}
 
@@ -78,17 +70,19 @@ export default function Main() {
           <Output text={outputStream} />
         </div>
 
-        <form class="flex flex-col gap-4 text-xl bg-dark-gray p-4 pt-6" onSubmit={onSubmit}>
+        <form
+          class="flex flex-col gap-4 text-xl bg-dark-gray p-4 pt-6 border-gray border-t-1 sm:border sm:border-b-0"
+          onSubmit={onSubmit}>
           {isSuggestionsVisible ? (
             <ul
-              class="list-disc list-inside text-sm mb-2"
+              class="list-disc list-inside mb-2"
               onClick={event => {
-                updateInputValue((event.target as HTMLElement).innerText);
+                dispatch({ type: 'setInput', value: (event.target as HTMLElement).innerText });
                 toggleSuggestions();
               }}>
               {suggestions.map(suggestion => (
                 <li>
-                  <button class="italic py-1 hover:underline">{suggestion}</button>
+                  <button class="italic text-sm py-1 hover:underline">{suggestion}</button>
                 </li>
               ))}
             </ul>
