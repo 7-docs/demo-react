@@ -1,9 +1,9 @@
 import PreactMarkdown from 'preact-markdown';
 import { tw } from 'twind/css';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import ts from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/typescript?alias=react:preact/compat&deps=preact@10.13.1';
-import tsx from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/tsx?alias=react:preact/compat&deps=preact@10.13.1';
-import { vscDarkPlus } from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism?alias=react:preact/compat&deps=preact@10.13.1';
+import ts from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/typescript?alias=react:preact/compat&deps=preact@10.13.2';
+import tsx from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/tsx?alias=react:preact/compat&deps=preact@10.13.2';
+import { vscDarkPlus } from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism?alias=react:preact/compat&deps=preact@10.13.2';
 import { horizontalScrollbar } from '../lib/scrollbar.ts';
 import type { ComponentChildren } from 'preact';
 
