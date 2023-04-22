@@ -52,7 +52,7 @@ const conversationReducer: Reducer<Conversation, ActionType> = (state, action) =
   }
 };
 
-export const useConversation = () => {
+export const useConversation = (): [Conversation, (action: ActionType) => void] => {
   const [state, dispatch] = useReducer(conversationReducer, initialState);
   return [state, dispatch];
 };

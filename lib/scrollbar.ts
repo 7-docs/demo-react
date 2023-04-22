@@ -1,6 +1,7 @@
 import { css } from 'twind/css';
 
 const scrollbar = {
+  'scrollbar-color': 'transparent',
   '&::-webkit-scrollbar-track': { backgroundColor: 'transparent', borderRadius: '6px' },
   '&::-webkit-scrollbar-thumb': { backgroundColor: '#333', borderRadius: '6px' },
 };

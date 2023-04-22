@@ -15,9 +15,11 @@ export default function Main() {
   const scrollableElement = useRef<HTMLDivElement>(null);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState(false);
 
+  const updateInputValue = (value: string) => !isStreaming && setInputValue(value);
+
   const onSubmit = (event: Event) => event.preventDefault();
 
-  const onChange = (event: Event) => event.target instanceof HTMLInputElement && setInputValue(event.target.value);
+  const onChange = (event: Event) => event.target instanceof HTMLInputElement && updateInputValue(event.target.value);
 
   const toggleSuggestions = () => setSuggestionsVisible(!isSuggestionsVisible);
 
@@ -54,7 +56,7 @@ export default function Main() {
         <div
           class={`${tw(verticalScrollbar)} flex-grow-1 overflow-y-auto flex flex-col gap-2 pb-2`}
           ref={scrollableElement}>
-          {conversation.history.map(interaction => (
+          {conversation?.history.map(interaction => (
             <>
               <Input>{interaction.input}</Input>
               <Output text={interaction.output} />
@@ -76,12 +78,12 @@ export default function Main() {
           <Output text={outputStream} />
         </div>
 
-        <form class="flex flex-col gap-4 text-xl bg-dark-gray p-2 pt-6" onSubmit={onSubmit}>
+        <form class="flex flex-col gap-4 text-xl bg-dark-gray p-4 pt-6" onSubmit={onSubmit}>
           {isSuggestionsVisible ? (
             <ul
               class="list-disc list-inside text-sm mb-2"
               onClick={event => {
-                setInputValue((event.target as HTMLElement).innerText);
+                updateInputValue((event.target as HTMLElement).innerText);
                 toggleSuggestions();
               }}>
               {suggestions.map(suggestion => (
