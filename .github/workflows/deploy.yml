@@ -21,6 +21,10 @@ jobs:
 
       - name: Build site
         run: deno task build
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_API_KEY: ${{ secrets.SUPABASE_API_KEY }}
 
       - name: Deploy to Deno Deploy
         uses: denoland/deployctl@v1
