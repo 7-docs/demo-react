@@ -1,17 +1,14 @@
-import PreactMarkdown from 'preact-markdown';
-import { tw } from 'twind/css';
+import ReactMarkdown from 'react-markdown';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
-import ts from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/typescript?alias=react:preact/compat&deps=preact@10.13.2';
-import tsx from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/languages/prism/tsx?alias=react:preact/compat&deps=preact@10.13.2';
-import { vscDarkPlus } from 'https://esm.sh/react-syntax-highlighter@15.5.0/dist/esm/styles/prism?alias=react:preact/compat&deps=preact@10.13.2';
-import { horizontalScrollbar } from '../lib/scrollbar.ts';
-import type { ComponentChildren } from 'preact';
+import ts from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
+import tsx from 'react-syntax-highlighter/dist/esm/languages/prism/tsx';
+import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import type { PropsWithChildren } from 'react';
 
-type Props = {
+type Props = PropsWithChildren<{
   inline?: boolean;
   className?: string;
-  children: ComponentChildren;
-};
+}>;
 
 SyntaxHighlighter.registerLanguage('typescript', ts);
 SyntaxHighlighter.registerLanguage('tsx', tsx);
@@ -31,7 +28,7 @@ const getLanguage = (props: Props) => {
 };
 
 const Code = (props: Props) => {
-  if (props.inline) return <code class="inline" {...props} />;
+  if (props.inline) return <code className="inline" {...props} />;
 
   const language = getLanguage(props);
 
@@ -40,7 +37,7 @@ const Code = (props: Props) => {
       style={vscDarkPlus}
       language={language}
       PreTag="div"
-      className={`${tw(horizontalScrollbar)} overflow-x-auto`}>
+      className={`scrollbar scrollbar-horizontal overflow-x-auto`}>
       {props.children}
     </SyntaxHighlighter>
   );
@@ -48,11 +45,11 @@ const Code = (props: Props) => {
 
 export function Output(props: { text: string }) {
   return (
-    <PreactMarkdown
+    <ReactMarkdown
       components={{
         code: Code
       }}>
       {props.text}
-    </PreactMarkdown>
+    </ReactMarkdown>
   );
 }

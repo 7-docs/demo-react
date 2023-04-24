@@ -1,0 +1,50 @@
+:root {
+  --darker-gray: #1b1b1b;
+  --dark-gray: #333;
+  --gray: #888;
+  --off-white: #faf9f6;
+  --white: '#fff';
+}
+
+body {
+  background-color: var(--darker-gray);
+  color: var(--off-white);
+  max-width: 65ch;
+  margin: 0 auto;
+}
+
+.scrollbar {
+  scrollbar-color: transparent;
+  scroll-behavior: smooth;
+}
+
+.scrollbar::-webkit-scrollbar-track {
+  background-color: transparent;
+  border-radius: 6px;
+}
+.scrollbar::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border-radius: 6px;
+}
+
+.scrollbar-horizontal::-webkit-scrollbar {
+  height: 8px;
+}
+
+.scrollbar-vertical::-webkit-scrollbar {
+  width: 8px;
+}
+
+.p-2 {
+  padding: 0.5rem;
+}
+
+.my-2 {
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

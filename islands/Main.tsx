@@ -1,6 +1,4 @@
-import { useState, useEffect, useRef } from 'preact/hooks';
-import { tw } from 'twind/css';
-import { verticalScrollbar } from '../lib/scrollbar.ts';
+import { useState, useEffect, useRef } from 'react';
 import { useConversation } from '../lib/useConversation.ts';
 import { Input } from '../components/Input.tsx';
 import { Output } from '../components/Output.tsx';
@@ -45,17 +43,17 @@ export default function Main() {
   }, [conversation.input]);
 
   return (
-    <main class="h-screen">
-      <div class="h-full relative flex flex-col">
-        <header class="flex flex-row items-center justify-between py-4">
-          <h1 class="text-3xl">{namespace}</h1>
-          <a href="https://github.com/7-docs/7-docs" class="text-xs italic hover:underline">
+    <main className="h-screen">
+      <div className="h-full relative flex flex-col">
+        <header className="flex flex-row items-center justify-between py-4">
+          <h1 className="text-3xl">{namespace}</h1>
+          <a href="https://github.com/7-docs/7-docs" className="text-xs italic hover:underline">
             Powered by 7-docs
           </a>
         </header>
 
         <div
-          class={`${tw(verticalScrollbar)} flex-grow-1 overflow-y-auto flex flex-col gap-2 pb-2`}
+          className={`scrollbar scrollbar-vertical flex-grow-1 overflow-y-auto flex flex-col gap-2 pb-2`}
           ref={scrollableElement}>
           {conversation?.history.map((interaction, index, conversation) => (
             <>
@@ -71,18 +69,18 @@ export default function Main() {
         </div>
 
         <form
-          class="flex flex-col gap-4 text-xl bg-dark-gray p-4 pt-6 border-gray border-t-1 sm:border sm:border-b-0"
+          className="flex flex-col gap-4 text-xl bg-dark-gray p-4 pt-6 border-gray border-t-1 sm:border sm:border-b-0"
           onSubmit={onSubmit}>
           {isSuggestionsVisible ? (
             <ul
-              class="list-disc list-inside mb-2"
+              className="list-disc list-inside mb-2"
               onClick={event => {
                 dispatch({ type: 'setInput', value: (event.target as HTMLElement).innerText });
                 toggleSuggestions();
               }}>
               {suggestions.map(suggestion => (
-                <li>
-                  <button class="italic text-sm py-1 hover:underline">{suggestion}</button>
+                <li key={suggestion}>
+                  <button className="italic text-sm py-1 hover:underline">{suggestion}</button>
                 </li>
               ))}
             </ul>
@@ -94,13 +92,13 @@ export default function Main() {
             placeholder="Ask me something..."
             value={inputValue}
             onChange={onChange}
-            class="text-darker-gray flex flex-col flex-grow px-2 py-1 border-none"
+            className="text-darker-gray flex flex-col flex-grow px-2 py-1 border-none"
           />
 
-          <div class="flex flex-row gap-4 justify-end">
+          <div className="flex flex-row gap-4 justify-end">
             <button
               type="button"
-              class="bg-transparent appearance-none text-xs italic text-left cursor-pointer p-0 hover:underline flex-grow-1"
+              className="bg-transparent appearance-none text-xs italic text-left cursor-pointer p-0 hover:underline flex-grow-1"
               onClick={toggleSuggestions}>
               Need suggestions?
             </button>

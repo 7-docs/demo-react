@@ -1,5 +1,5 @@
 import { getDelta, splitTextIntoSentences } from '@7-docs/edge';
-import { useCallback, useEffect, useState } from 'preact/hooks';
+import { useCallback, useEffect, useState } from 'react';
 import { completionModels, embeddingModels } from '../config.ts';
 import type { Conversation } from './useConversation.ts';
 import type { StreamMetaData } from '@7-docs/edge';

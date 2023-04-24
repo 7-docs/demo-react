@@ -1,5 +1,5 @@
-import { useReducer } from 'preact/hooks';
-import type { Reducer } from 'preact/hooks';
+import { useReducer } from 'react';
+import type { Reducer } from 'react';
 import type { StreamMetaData } from '@7-docs/edge';
 
 interface Interaction {
