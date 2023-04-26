@@ -10,5 +10,6 @@ serve({
   ],
   build: {
     buildTarget: 'es2022',
+    ssg: true,
   },
 });
