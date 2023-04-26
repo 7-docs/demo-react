@@ -6,6 +6,7 @@ import { Sources } from '../components/Sources.tsx';
 import { InputButton } from '../components/InputButton.tsx';
 import { namespace, suggestions } from '../config.ts';
 import { useStream } from '../lib/useStream.ts';
+import type { FormEventHandler, ChangeEventHandler } from 'react';
 
 export default function Main() {
   const [conversation, dispatch] = useConversation();
@@ -14,12 +15,13 @@ export default function Main() {
   const scrollableElement = useRef<HTMLDivElement>(null);
   const [isSuggestionsVisible, setSuggestionsVisible] = useState(false);
 
-  const onSubmit = (event?: Event) => {
+  const onSubmit: FormEventHandler<HTMLFormElement> = event => {
     if (event) event.preventDefault();
     if (inputValue.trim().length > 0) dispatch({ type: 'setInput', value: inputValue });
   };
 
-  const onChange = (event: Event) => event.target instanceof HTMLInputElement && setInputValue(event.target.value);
+  const onChange: ChangeEventHandler<HTMLInputElement> = event =>
+    event.target instanceof HTMLInputElement && setInputValue(event.target.value);
 
   const toggleSuggestions = () => setSuggestionsVisible(!isSuggestionsVisible);
 
