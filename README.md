@@ -4,7 +4,7 @@ Source of [7-docs-demo-react.deno.dev](https://7-docs-demo-react.deno.dev), buil
 
 - Deno + Deno Deploy
 - [@7-docs/edge](https://www.npmjs.com/package/@7-docs/edge)
-- [Fresh](https://fresh.deno.dev)
+- [Aleph.js](https://alephjs.org)
 
 The demo uses the Markdown content of the React documentation, ingested from the
 [reactjs/react.dev](https://github.com/reactjs/react.dev/tree/main/src/content) repository to a Supabase vector database
