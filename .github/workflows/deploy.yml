@@ -30,5 +30,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: 7-docs-demo-react
-          entrypoint: output/server.js
+          entrypoint: server.ts
           import-map: import_map.json
