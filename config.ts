@@ -1,6 +1,7 @@
 export const embeddingModels = ['text-embedding-ada-002'];
 export const completionModels = ['gpt-3.5-turbo', 'text-davinci-003'];
 export const namespace = 'react';
+export const title = 'React KB';
 export const suggestions = [
   'How can I use useState?',
   'What are pure functions and why do I need them?',

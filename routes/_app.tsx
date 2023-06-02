@@ -1,3 +1,13 @@
-import type { ReactNode } from 'react';
+import { Head } from 'aleph/react';
+import { title } from '../config.ts';
 
-export default ({ children }: { children: ReactNode }) => children;
+export default function App({ children }: { children: React.ReactNode }) {
+  return (
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      {children};
+    </>
+  );
+}
