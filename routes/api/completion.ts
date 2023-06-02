@@ -1,7 +1,6 @@
 import { load } from 'dotenv';
 import { createClient } from '@supabase/supabase-js';
-import { getCompletionHandler } from '@7-docs/edge';
-import * as supabase from '@7-docs/edge/supabase';
+import { getCompletionHandler, supabase } from '@7-docs/edge';
 import { namespace, prompt, system } from '../../config.ts';
 import type { MetaData } from '@7-docs/edge';
 
